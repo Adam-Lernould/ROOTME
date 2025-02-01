@@ -15,7 +15,8 @@ john.doe::catcorp.local:1944952F5B845DB1:5C336C6B69FD2CF7B64EB0BDE3102162:010100
 ```
 **🕵️ Analyse Manuelle des Trames NTLMv2** 
 - Trame Challenge - Type 2 :
-  ~~~~
+Structure :
+~~~~
   NTLMSSP_CHALLENGE (0x02)
 ├─ Server Challenge : 1944952f5b845db1 (8 octets)
 ├─ Target Name : CATCORP
@@ -25,9 +26,24 @@ john.doe::catcorp.local:1944952F5B845DB1:5C336C6B69FD2CF7B64EB0BDE3102162:010100
 │  ├─ Computer name : DC01
 │  └─ Timestamp : [Valeur temporelle]
 └─ Version : Windows 10 (Build 17763)
-~~
+~~~~
 
-
+- Trame Authenticate - Type 3 : 
+Données critiques :
+~~~~
+NTLMSSP_AUTH (0x03)
+├─ User : john.doe
+├─ Domain : catcorp.local (DNS)
+├─ NTProofStr : 5C336C6B69FD2CF7B64EB0BDE3102162 (HMAC-MD5)
+├─ NTLMv2 Response : 
+│  ├─ Client Challenge : 75304C546C6F3432
+│  ├─ Target Info : 
+│  │  ├─ DNS domain : catcorp.local
+│  │  ├─ Computer name : DC01.catcorp.local
+│  │  └─ Service : cifs/DC01
+│  └─ Timestamp : Feb 19, 2024 15:48:01.113269800 UTC
+└─ Session Key : b96de84b47696a6800dfb52bf5935c75
+~~~~
 
 ### 2. **Crack du hash avec Hashcat**
    - **Commande** :
