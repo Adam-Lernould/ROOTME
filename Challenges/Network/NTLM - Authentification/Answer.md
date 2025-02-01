@@ -1,7 +1,7 @@
 # Challenge RootMe : Authentification NTLM
 
-**Catégorie** : Réseau / Cryptographie  
-**Difficulté** : ⭐⭐  .
+**Catégorie** : Réseau 
+**Difficulté** : ⭐⭐
 **Objectif** : Retrouver le mot de passe d'un utilisateur à partir d'une capture NTLMv2.
 
 ---

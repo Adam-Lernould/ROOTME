@@ -1,5 +1,8 @@
-## 🏆 Challenge Objective  
-The **Cat Corporation** SOC team has tasked us with recovering the password of a user involved in a **suspicious Kerberos authentication request**.  
+# Challenge RootMe : Authentification Kerberos
+
+**Catégorie** : Réseau 
+**Difficulté** : ⭐⭐
+**Objectif** : Retrouver le mot de passe d'un utilisateur à partir d'une capture TELNET.
 
 The flag format is:  
 
