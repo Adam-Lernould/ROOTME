@@ -1,8 +1,8 @@
 # Challenge RootMe : Authentification Kerberos
 
-**Catégorie** : Réseau 
-**Difficulté** : ⭐⭐
-**Objectif** : Retrouver le mot de passe d'un utilisateur à partir d'une capture TELNET.
+- **Catégorie** : Réseau 
+- **Difficulté** : ⭐⭐
+- **Objectif** : Retrouver le mot de passe d'un utilisateur à partir d'une capture TELNET.
 
 The flag format is:  
 
