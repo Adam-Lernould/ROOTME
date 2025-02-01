@@ -1,49 +1,62 @@
 # Challenge RootMe : Authentification NTLM
 
-- **Catégorie** : Réseau 
-- **Difficulté** : ⭐⭐
-- **Objectif** : Retrouver le mot de passe d'un utilisateur à partir d'une capture NTLMv2.
+**Catégorie** : Réseau / Cryptographie  
+**Difficulté** : ⭐⭐  
+**Objectif** : Retrouver le mot de passe d'un utilisateur à partir d'une capture NTLMv2.
 
 ---
 
 ## 📝 Étapes de résolution
 
-### 1. **Analyse des trames NTLM avec Wireshark**
-   - **Trame Challenge (Type 2)** : Extraction du `Server Challenge` et du domaine :
-     ```plaintext
-     Server Challenge: 1944952f5b845db1
-     Domain: catcorp.local (DNS)
+### 1. Analyse de la capture avec [A-Packets](https://apackets.com/)
+L'outil en ligne permet une extraction automatisée du hash NTLMv2 :
+```plaintext
+john.doe::catcorp.local:1944952F5B845DB1:5C336C6B69FD2CF7B64EB0BDE3102162:01010000000000001A9790044B63DA0175304C546C6F34320000000002000E0043004100540043004F005200500001000800440043003000310004001A0063006100740063006F00720070002E006C006F00630061006C000300240044004300300031002E0063006100740063006F00720070002E006C006F00630061006C0005001A0063006100740063006F00720070002E006C006F00630061006C00070008001A9790044B63DA010900120063006900660073002F0044004300300031000000000000000000
+```
+**🕵️ Analyse Manuelle des Trames NTLMv2** 
+- Trame Challenge - Type 2 :
+  ~~~~
+  NTLMSSP_CHALLENGE (0x02)
+├─ Server Challenge : 1944952f5b845db1 (8 octets)
+├─ Target Name : CATCORP
+├─ Target Info :
+│  ├─ NetBIOS domain : CATCORP
+│  ├─ DNS domain : catcorp.local
+│  ├─ Computer name : DC01
+│  └─ Timestamp : [Valeur temporelle]
+└─ Version : Windows 10 (Build 17763)
+~~
+
+
+
+### 2. **Crack du hash avec Hashcat**
+   - **Commande** :
+     ```bash
+     hashcat -m 5600 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
      ```
-   - **Trame Authenticate (Type 3)** : Récupération des éléments critiques :
+   - **Résultat** : Mot de passe trouvé en quelques secondes :
      ```plaintext
-     User: john.doe
-     NTProofStr (HMAC-MD5): 5c336c6b69fd2cf7b64eb0bde3102162
-     NTLMv2 Response: 01010000... (données complètes)
+     Password: rootbeer
      ```
 
-### 2. **Formatage du hash pour Hashcat**
-   ```plaintext
-   john.doe::catcorp.local:1944952f5b845db1:5c336c6b69fd2cf7b64eb0bde3102162:01010000...
-   ```
-### 3. Crack du mot de passe avec Hashcat
-  -**Commande utilisée**:
-    ``bash
-    hashcat -m 5600 -O hash.txt crackstation-human-only.txt
-    ```
+### 3. **Alternative avec John the Ripper**
+   - **Commande** :
+     ```bash
+     john --format=netntlmv2 hash.txt
+     ```
+   - **Résultat identique** : `rootbeer`
 
-    Si crackstation-human-only.txt n'est pas installé : 
+---
 
-    ```bash
-    wget https://crackstation.net/files/crackstation-human-only.txt.gz
-    gunzip crackstation-human-only.txt.gz
-    ```
+## 🛠 Outils utilisés
+- **[A-Packets](https://apackets.com/)** : Extraction automatisée du hash
+- **Hashcat (mode 5600)** : Crack rapide avec `rockyou.txt`
+- **John the Ripper** : Alternative efficace pour NTLMv2
+- **Wireshark** : Vérification manuelle optionnelle
 
-  -**Résultat : Mot de passe cracké en 56 secondes :**
-    ```plaintext
-    Password: rootbeer
-    ```
-### 🏆 Solution finale
---> Flag :
+---
+
+## 🏆 Solution finale
+**Flag** :  
 ```plaintext
 RM{john.doe@catcorp.local:rootbeer}
-``` 
