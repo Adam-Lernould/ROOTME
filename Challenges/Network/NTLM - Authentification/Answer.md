@@ -24,3 +24,26 @@
 ### 2. **Formatage du hash pour Hashcat**
    ```plaintext
    john.doe::catcorp.local:1944952f5b845db1:5c336c6b69fd2cf7b64eb0bde3102162:01010000...
+   ```
+### 3. Crack du mot de passe avec Hashcat
+  -**Commande utilisée**:
+    ``bash
+    hashcat -m 5600 -O hash.txt crackstation-human-only.txt
+    ```
+
+    Si crackstation-human-only.txt n'est pas installé : 
+
+    ```bash
+    wget https://crackstation.net/files/crackstation-human-only.txt.gz
+    gunzip crackstation-human-only.txt.gz
+    ```
+
+  -**Résultat : Mot de passe cracké en 56 secondes :**
+    ```plaintext
+    Password: rootbeer
+    ```
+### 🏆 Solution finale
+--> Flag :
+```plaintext
+RM{john.doe@catcorp.local:rootbeer}
+``` 
