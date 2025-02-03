@@ -37,7 +37,7 @@ J'ai utilisé la commande suivante dans un terminal sous Linux :
 echo -n "0C:B3:19:B9:4F:C6GT-S7390G" | sha1sum
 ```
 
-- **Résultat **:
+- **Résultat ** :
 ```plaintext
 c1d0349c153ed96fe2fadf44e880aef9e69c122b
 ```
