@@ -8,8 +8,6 @@
 
 ## 📝 Étapes de résolution
 
-Ce challenge s'inspire de l'article [Root Me : CISCO — password](https://www.root-me.org) de Jayvin Gohel (Nov 12, 2023).
-
 ### 1. Lancer le challenge
 - Rendez-vous sur la section **Network Challenges** de Root Me.
 - Sélectionnez le challenge **CISCO - mot de passe**.
