@@ -1,8 +1,8 @@
 # Challenge RootMe :DNS - Transfert de Zone
 
--**Catégorie** : Réseau  
--**Difficulté** : ⭐⭐
--**Objectif** : Récupérer le mot de passe de validation en exploitant une mauvaise configuration de transfert de zone DNS.
+- **Catégorie** : Réseau  
+- **Difficulté** : ⭐⭐
+- **Objectif** : Récupérer le mot de passe de validation en exploitant une mauvaise configuration de transfert de zone DNS.
 
 ---
 
